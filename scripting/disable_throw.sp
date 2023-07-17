@@ -26,19 +26,11 @@ public Action OnPlayerRunCmd(int client, int &buttons)
   if (clientWeapon < 0 || !GetEntityClassname(clientWeapon, weaponClassname, sizeof(weaponClassname)))
     return Plugin_Continue;
 
-  if (IsThrowableWeapon(weaponClassname))
+  if (StrEqual(weaponClassname, "weapon_melee"))
   {
     buttons &= ~IN_ATTACK2;
     return Plugin_Changed;
   }
 
   return Plugin_Continue;
-}
-
-stock bool IsThrowableWeapon(const char[] classname)
-{
-  return (
-    StrEqual(classname, "weapon_spanner")
-    || StrEqual(classname, "weapon_axe")
-    || StrEqual(classname, "weapon_hammer"));
 }
